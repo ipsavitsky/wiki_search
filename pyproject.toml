@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "wiki-search"
+version = "0.1.0"
+description = ""
+authors = ["Ilya Savitsky <ipsavitsky234@gmail.com>"]
+readme = "README.md"
+packages = [{include = "wiki_search"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+beautifulsoup4 = "^4.12.2"
+markdownify = "^0.11.6"
+rich = "^13.3.5"
+requests = "^2.29.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
