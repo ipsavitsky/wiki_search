@@ -1,8 +1,21 @@
+"""A bs4 filtering module."""
 from bs4 import BeautifulSoup
-from options import Options
+
+from .options import Options
 
 
 def filter_soup(opts: Options, title: str, soup: BeautifulSoup) -> BeautifulSoup:
+    """Apply filtering to the soup.
+
+    :param opts: Request options.
+    :type opts: Options
+    :param title: Title of the article.
+    :type title: str
+    :param soup: BeautifoulSoup to filter.
+    :type soup: BeautifulSoup
+    :return: Filtered BeautifulSoup.
+    :rtype: BeautifulSoup
+    """
     body = soup.find("div", class_="mw-parser-output")
     for tag in body.find_all("table", class_="infobox"):
         tag.decompose()

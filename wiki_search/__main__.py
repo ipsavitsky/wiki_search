@@ -1,12 +1,15 @@
 import argparse
+import logging as log
+import sys
+
 from bs4 import BeautifulSoup
 from markdownify import MarkdownConverter
 from rich.console import Console
 from rich.markdown import Markdown
-from soup_filters import filter_soup
-from wikipedia import NoArticleFound, fetch_wiki_data
-from options import Options
-import logging as log
+
+from .options import Options
+from .soup_filters import filter_soup
+from .wikipedia import NoArticleFound, fetch_wiki_data
 
 log.basicConfig(level=log.INFO)
 
@@ -26,7 +29,7 @@ try:
     page_info = fetch_wiki_data(options, args.keyword)
 except NoArticleFound as e:
     console.print(f'No article "{e.fprompt}" found')
-    exit(1)
+    sys.exit(1)
 
 soup = BeautifulSoup(page_info["text"]["*"], "html.parser")
 
