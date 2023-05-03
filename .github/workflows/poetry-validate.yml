@@ -1,0 +1,25 @@
+name: "Poetry validation"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@main
+
+      - uses: actions/setup-python@main
+        with:
+          python-version: "3.10"
+      
+      - run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - run: poetry install --with dev
+
+      - run: poetry build 
+
+      
